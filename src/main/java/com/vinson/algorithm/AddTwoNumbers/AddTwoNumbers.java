@@ -18,61 +18,85 @@ import com.alibaba.fastjson.JSON;
 public class AddTwoNumbers {
 
 
+//    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+//        ListNode result = null;
+//        ListNode tempNode = null;
+//        int tempNum = 0;
+//        while (true){
+//            if(l1 == null || l2 ==  null){
+//                break;
+//            }
+//            ListNode newNode = null;
+//            int val1 = l1.val;
+//            int val2 = l2.val;
+//            int sum = val1 + val2 + tempNum;
+//            if(sum > 9){
+//                tempNum = sum/10;
+//                newNode = new ListNode(sum%10);
+//            }else {
+//                tempNum = 0;
+//                newNode = new ListNode(sum);
+//            }
+//            if(result == null){
+//                result = newNode;
+//            }else {
+//                tempNode.next = newNode;
+//            }
+//            tempNode = newNode;
+//            l1 = l1.next;
+//            l2 = l2.next;
+//        }
+//        ListNode end = (l1 == null ? l2 : l1);
+//        while (true){
+//            if(end == null){
+//                break;
+//            }
+//            ListNode newNode = null;
+//            int sum = end.val + tempNum;
+//            if(sum > 9){
+//                tempNum = sum/10;
+//                newNode = new ListNode(sum%10);
+//            }else {
+//                tempNum = 0;
+//                newNode = new ListNode(sum);
+//            }
+//            if(result == null){
+//                result = newNode;
+//            }else {
+//                tempNode.next = newNode;
+//            }
+//            tempNode = newNode;
+//            end = end.next;
+//        }
+//        if(tempNum > 0){
+//            tempNode.next = new ListNode(tempNum);
+//        }
+//        return result;
+//    }
+
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode result = null;
-        ListNode tempNode = null;
+        //作为头结点
+        ListNode result = new ListNode(0);
         int tempNum = 0;
-        while (true){
-            if(l1 == null || l2 ==  null){
-                break;
-            }
-            ListNode newNode = null;
-            int val1 = l1.val;
-            int val2 = l2.val;
+        ListNode curNode = result;
+        while (l1 != null || l2 != null){
+            int val1 = l1 == null ? 0 : l1.val;
+            int val2 = l2 == null ? 0 : l2.val;
             int sum = val1 + val2 + tempNum;
-            if(sum > 9){
-                tempNum = sum/10;
-                newNode = new ListNode(sum%10);
-            }else {
-                tempNum = 0;
-                newNode = new ListNode(sum);
-            }
-            if(result == null){
-                result = newNode;
-            }else {
-                tempNode.next = newNode;
-            }
-            tempNode = newNode;
-            l1 = l1.next;
-            l2 = l2.next;
-        }
-        ListNode end = (l1 == null ? l2 : l1);
-        while (true){
-            if(end == null){
-                break;
-            }
-            ListNode newNode = null;
-            int sum = end.val + tempNum;
-            if(sum > 9){
-                tempNum = sum/10;
-                newNode = new ListNode(sum%10);
-            }else {
-                tempNum = 0;
-                newNode = new ListNode(sum);
-            }
-            if(result == null){
-                result = newNode;
-            }else {
-                tempNode.next = newNode;
-            }
-            tempNode = newNode;
-            end = end.next;
+            tempNum = sum / 10;
+            ListNode newNode = new ListNode(sum % 10);
+            l1 = l1 == null ? l1 : l1.next;
+            l2 = l2 == null ? l2 : l2.next;
+            curNode.next = newNode;
+            curNode = newNode;
         }
         if(tempNum > 0){
-            tempNode.next = new ListNode(tempNum);
+            curNode.next = new ListNode(tempNum);
         }
-        return result;
+        return result.next;
     }
+
 
     public static void main(String[] args) {
         AddTwoNumbers addTwoNumbers = new AddTwoNumbers();
