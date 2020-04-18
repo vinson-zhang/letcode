@@ -1,6 +1,7 @@
 package com.vinson.util;
 
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class CommonUtil {
@@ -34,6 +35,23 @@ public class CommonUtil {
             int randomInt =  (min + (int)(Math.random() * (max - min)));
             arr[i] = randomInt;
         }
+        return arr;
+    }
+
+    /**
+     * 获取一个默认排序的数组
+     * @param len
+     * @param min
+     * @param max
+     * @return
+     */
+    public static int[] getSortRandomArrInt(int len, int min, int max){
+        int[] arr = new int[len];
+        for(int i = 0; i < len; i++){
+            int randomInt =  (min + (int)(Math.random() * (max - min)));
+            arr[i] = randomInt;
+        }
+        Arrays.sort(arr);
         return arr;
     }
 
